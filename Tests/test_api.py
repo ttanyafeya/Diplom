@@ -1,8 +1,8 @@
 import allure
 from Pages.Add_To_Cart_api import AddToCartAPI
 from Pages.Wrong_Add_To_Cart_api import WrongRequestAPI
-from constants import API1_url
-from constants import API2_url
+from Tests.constants import API1_url
+from Tests.constants import API2_url
 from Pages.Update_cart_api import UpdateCartAPI
 from Pages.Delete_From_Cart_api import DeleteFromCart
 from Pages.Send_Empty_Post_Request_api import EmptyPostRequest
@@ -12,11 +12,11 @@ from Pages.Send_Empty_Post_Request_api import EmptyPostRequest
 @allure.story("Добавление продукта в корзину")
 def test_add_product_to_cart():
     """
-                        Тест для метода добавления продукта в корзину.
-                        Проверяет, успешен ли запрос на добавление товара в корзину.
+    Тест для метода добавления продукта в корзину.
+    Проверяет, успешен ли запрос на добавление товара в корзину.
     """
     with allure.step("Добавить книгу в корзину"):
-        product_id = 2963834 # ID продукта для добавления
+        product_id = 3082006  # ID продукта для добавления
         item_list_name = "search"  # Имя списка, откуда добавляется продукт
         add_to_cart_api = AddToCartAPI(API1_url)  # Создаем экземпляр API для добавления в корзину
         status_code = add_to_cart_api.add_product_to_cart(product_id, item_list_name)  # Выполняем запрос
@@ -29,12 +29,12 @@ def test_add_product_to_cart():
 @allure.story("Редактирование корзины")
 def test_edit_cart():
     """
-                         Тест для редактирования содержимого корзины.
-                         Проверяет, что изменения применяются корректно.
+    Тест для редактирования содержимого корзины.
+    Проверяет, что изменения применяются корректно.
     """
     edit_cart_api = UpdateCartAPI(API2_url)  # Создаем экземпляр класса API для редактирования корзины
 
-    product_id = 2967760  # ID продукта для добавления
+    product_id = 257013274  # ID продукта для добавления
     item_list_name = "search"  # Имя списка, откуда добавляется продукт
     add_to_cart_api = AddToCartAPI(API1_url)
     status_code = add_to_cart_api.add_product_to_cart(product_id, item_list_name)  # Добавляем продукт в корзину
@@ -43,14 +43,12 @@ def test_edit_cart():
         assert status_code == 200  # Проверяем, что продукт успешно добавлен
 
     # Параметры для редактирования корзины
-    items_to_update = [{'id': 141579548, "quantity": 2}]  # Обновляем количество товара
+    items_to_update = [{'id': 257013274, "quantity": 2}]  # Обновляем количество товара
 
-    # Редактируем корзину
-    update_cart_response = edit_cart_api.update_cart[items_to_update] # Выполняем запрос на редактирование
-    update_cart_response = (200, {'products': [{'id': 141579548, 'quantity': 2}]})  # Пример ответа
+    # Редактируем корзину - ИСПРАВЛЕНО: вызов метода
+    status_code, response_data = edit_cart_api.update_cart(items_to_update)  # Исправлен синтаксис вызова метода
 
     # Проверяем статус-код ответа на успешное редактирование
-    status_code, response_data = update_cart_response
     assert status_code == 200  # Проверяем статус-код
 
     # Проверяем содержимое корзины после редактирования
@@ -62,10 +60,10 @@ def test_edit_cart():
 @allure.story("Удаление товара из корзины")
 def test_delete_product_from_cart():
     """
-                    Тест для удаления товара из корзины.
-                    Проверяет, что товар успешно удален.
+    Тест для удаления товара из корзины.
+    Проверяет, что товар успешно удален.
     """
-    product_id = 2967760  # ID добавленной книги
+    product_id = 257013274  # ID добавленной книги
     item_list_name = "search"  # Имя списка, откуда добавляется продукт
 
     # Создаем экземпляр класса для добавления товара в корзину
@@ -96,8 +94,8 @@ def test_delete_product_from_cart():
 @allure.story("Запрос на добавление товара в корзину используя неправильный метод (PATCH вместо POST)")
 def test_wrong_add_request():
     """
-                    Тест для некорректного добавления продукта в корзину.
-                    Проверяет, правильный ли статус-код возвращается для запроса с ошибкой.
+    Тест для некорректного добавления продукта в корзину.
+    Проверяет, правильный ли статус-код возвращается для запроса с ошибкой.
     """
     with allure.step("Попытка добавить книгу в корзину некорректно"):
         product_id = 2967760  # ID продукта для попытки добавления
@@ -119,7 +117,7 @@ def test_add_product_to_cart_with_empty_body():
     """
     with allure.step("Отправить пустой запрос в корзину"):
         # Создаем объект для отправки запросов к API
-        empty = EmptyPostRequest(API1_url)  # Замените на ваш URL
+        empty = EmptyPostRequest(API1_url)
         status_code = empty.add_product_to_cart_with_empty_body()  # Вызов метода с пустым телом
 
     with allure.step("Проверить статус запроса"):

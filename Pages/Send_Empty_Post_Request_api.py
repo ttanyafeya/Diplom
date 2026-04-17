@@ -1,7 +1,7 @@
 import requests
 import allure
-from constants import API1_url
-from constants import bearer_token
+from Tests.constants import API1_url
+from Tests.constants import bearer_token
 
 @allure.description("Тестирование отправки пустого запроса к API .")
 class EmptyPostRequest:

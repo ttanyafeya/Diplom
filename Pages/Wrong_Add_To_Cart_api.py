@@ -1,9 +1,9 @@
 import requests
 import json
 import allure
-from constants import API1_url
-from constants import API2_url
-from constants import bearer_token
+from Tests.constants import API1_url
+from Tests.constants import API2_url
+from Tests.constants import bearer_token
 
 
 @allure.description("Тестирование добавления товара в корзину на сайте Читай-город.")

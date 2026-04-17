@@ -1,3 +1,4 @@
+webdriver-manager
 requests==2.33.1
 selenium==4.43.0
 pytest==9.0.3
