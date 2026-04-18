@@ -1,5 +1,6 @@
-UI_url: str = "https://www.chitai-gorod.ru"
+UI_url: str = "https://www.chitai-gorod.ru/"
 API1_url: str = "https://web-gate.chitai-gorod.ru/api/v1/cart/product"
 API2_url: str = "https://web-gate.chitai-gorod.ru/api/v1/cart"
+API3_url: str = "https://web-agr.chitai-gorod.ru/web/api/v2" # Поиск
 product_id: int = 3082006
-bearer_token: str = "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwczovL3VzZXItcmlnaHQiLCJzdWIiOjQxNzkxNDEsImlhdCI6MTc3NjQzNjEyMSwiZXhwIjoxNzc2NDM5NzIxLCJ0eXBlIjoyMCwianRpIjoiMDE5ZDliZDgtMGY2OC03MWE4LTgwMzYtYmJlNzA3MmFhZWNjIiwicm9sZXMiOjEwfQ.rPloUtOeyZxkHrTiRAf5ijYWfIDPx9uGbwQwFgUlZiMGypKTuyHb9Kclj29jz94hcCR899RJmS2nw81r--oIpa8aPBb1Ao8OFdOD83Z4TmqEW5kFXpBLVZutJGrwlD3HlloAg-bc2_2lq8unnnoDe67iWvhsMap4D2Z3xzWA4w_Wq0zUM5BeZMg93zdNkDePJyd89qwvxTwbkJ-iDgOhdrfVjsM-X8q-cKgN61PPfpXAMnPmc5XX0W6qJ_PMEn21yAQL0ZX6d4EXEVILMTOPdJTWA0rB3DAcGBuGdxP0p_iKdH2ujinueS3mIFbGQvl2xMhtVbMUVlQ0zQheE_26gQ"
+bearer_token: str = "Your token"
